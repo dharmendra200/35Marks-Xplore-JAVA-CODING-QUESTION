@@ -1,0 +1,60 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int size = sc.nextInt();
+        fruit[] arr = new fruit[size];
+        for (int i = 0; i < arr.length; i++) {
+            int a = sc.nextInt();
+            sc.nextLine();
+            String b = sc.nextLine();
+            int c = sc.nextInt();
+            int d = sc.nextInt();
+            arr[i] = new fruit(a, b, c, d);
+        }
+        int inputRating = sc.nextInt();
+        int result = findMaxPriceByRating(arr, inputRating);
+        if (result == 0) {
+            System.out.println("NA");
+        } else {
+            System.out.println(result);
+        }
+    }
+
+    static int findMaxPriceByRating(fruit[] arr, int inputRating) {
+        int maxPrice = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i].getRating() > inputRating && arr[i].getPrice() > maxPrice) {
+                maxPrice = arr[i].getPrice();
+            }
+        }
+        return maxPrice;
+    }
+}
+
+class fruit {
+    int id;
+    String name;
+    int price;
+    int rating;
+
+    public fruit(int id, String name, int price, int rating) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.rating = rating;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+}
